@@ -9,6 +9,8 @@ import {
 } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 
+export const experimental_ppr = true;
+
 export default async function Page() {
   return (
     <main>
