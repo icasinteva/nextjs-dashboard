@@ -1,6 +1,7 @@
 'use client';
 
 import { createInvoice, State } from '@/app/lib/actions';
+import { Pages } from '@/app/lib/constants';
 import { CustomerField } from '@/app/lib/definitions';
 import { Button } from '@/app/ui/button';
 import {
@@ -139,7 +140,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
       </div>
       <div className='mt-6 flex justify-end gap-4'>
         <Link
-          href='/dashboard/invoices'
+          href={Pages.Invoices}
           className='flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200'
         >
           Cancel

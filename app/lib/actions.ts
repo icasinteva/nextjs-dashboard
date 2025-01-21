@@ -1,9 +1,12 @@
 'use server';
 
+import { signOut as logOut, signIn } from '@/auth';
 import { sql } from '@vercel/postgres';
+import { AuthError } from 'next-auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
+import { Pages } from './constants';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -58,8 +61,8 @@ export async function createInvoice(prevState: State, formData: FormData) {
     console.error(error);
   }
 
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+  revalidatePath(Pages.Invoices);
+  redirect(Pages.Invoices);
 }
 
 export async function updateInvoice(
@@ -92,11 +95,47 @@ export async function updateInvoice(
     console.error(error);
   }
 
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+  revalidatePath(Pages.Invoices);
+  redirect(Pages.Invoices);
 }
 
 export async function deleteInvoice(id: string) {
   await sql`DELETE FROM invoices WHERE id = ${id}`;
-  revalidatePath('/dashboard/invoices');
+  revalidatePath(Pages.Invoices);
+}
+
+export async function authenticate(
+  pathname: string,
+  prevState: string | undefined,
+  formData: FormData
+) {
+  try {
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const options =
+      pathname !== Pages.LogIn
+        ? formData
+        : {
+            redirectTo: Pages.Dashboard,
+            email,
+            password,
+          };
+
+    await signIn('credentials', options);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}
+
+export async function signOut() {
+  await logOut();
 }
