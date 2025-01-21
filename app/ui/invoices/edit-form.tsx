@@ -23,12 +23,10 @@ export default function EditInvoiceForm({
   const { id, customer_id, amount: invoiceAmount, status } = invoice;
   const updateInvoiceWithId = updateInvoice.bind(null, id);
   const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
-  const [amount, setAmount] = useState(invoiceAmount);
+  const [amount, setAmount] = useState(`${invoiceAmount}`);
 
   const handleChangeAmount = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-
-    setAmount(value);
+    setAmount(e.target.value);
   };
 
   return (
