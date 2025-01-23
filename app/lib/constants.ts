@@ -1,7 +1,7 @@
 export enum Pages {
   Home = '/',
-  Dashboard = '/dashboard',
   LogIn = '/login',
+  Dashboard = '/dashboard',
   Invoices = '/dashboard/invoices',
   Customers = '/dashboard/customers',
   CreateInvoice = '/dashboard/invoices/create',
@@ -9,4 +9,5 @@ export enum Pages {
   CreateCustomer = '/dashboard/customers/create',
   UpdateCustomer = '/dashboard/customers/:id/edit',
   Settings = '/dashboard/settings',
+  ResetInvoices = '/dashboard/settings/drop/invoices',
 }

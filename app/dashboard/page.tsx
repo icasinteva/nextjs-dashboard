@@ -9,17 +9,13 @@ import {
 } from '@/app/ui/skeletons';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { PageProps } from '../lib/definitions';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
 };
 
-export default async function Page(props: {
-  searchParams?: Promise<{
-    query?: string;
-    page?: string;
-  }>;
-}) {
+export default async function Page(props: PageProps) {
   await props.searchParams;
 
   return (

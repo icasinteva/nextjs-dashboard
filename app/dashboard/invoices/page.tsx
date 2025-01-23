@@ -1,6 +1,7 @@
 import { fetchInvoicesPages } from '@/app/lib/data';
+import { PageProps } from '@/app/lib/definitions';
+import { CreateInvoice } from '@/app/ui/buttons';
 import { lusitana } from '@/app/ui/fonts';
-import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import Pagination from '@/app/ui/invoices/pagination';
 import Table from '@/app/ui/invoices/table';
 import Search from '@/app/ui/search';
@@ -12,12 +13,7 @@ export const metadata: Metadata = {
   title: 'Invoices',
 };
 
-export default async function Page(props: {
-  searchParams?: Promise<{
-    query?: string;
-    page?: string;
-  }>;
-}) {
+export default async function Page(props: PageProps) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;

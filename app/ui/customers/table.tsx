@@ -1,6 +1,6 @@
 import { fetchFilteredCustomers } from '@/app/lib/data';
 import Image from 'next/image';
-import { DeleteCustomer, UpdateCustomer } from '../invoices/buttons';
+import { DeleteCustomer, UpdateCustomer } from '../buttons';
 
 export default async function CustomersTable({
   query,

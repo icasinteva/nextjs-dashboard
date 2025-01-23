@@ -92,3 +92,10 @@ export type CustomerForm = {
   name: string;
   email: string;
 };
+
+export type PageProps = {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+};

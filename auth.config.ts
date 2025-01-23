@@ -9,11 +9,10 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith(Pages.Dashboard);
-      const isDev = true; // nextUrl.hostname === 'localhost';
 
       if (isOnDashboard) {
         return isLoggedIn;
-      } else if (isLoggedIn && !isDev) {
+      } else if (isLoggedIn) {
         return Response.redirect(new URL(Pages.Dashboard, nextUrl));
       }
       return true;
