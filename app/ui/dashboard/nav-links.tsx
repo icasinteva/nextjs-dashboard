@@ -1,14 +1,15 @@
 'use client';
 
+import { Pages } from '@/app/lib/constants';
 import {
-  UserGroupIcon,
-  HomeIcon,
+  Cog6ToothIcon,
   DocumentDuplicateIcon,
+  HomeIcon,
+  UserGroupIcon,
 } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
-import { Pages } from '@/app/lib/constants';
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -19,7 +20,8 @@ const links = [
     href: Pages.Invoices,
     icon: DocumentDuplicateIcon,
   },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  { name: 'Customers', href: Pages.Customers, icon: UserGroupIcon },
+  { name: 'Settings', href: Pages.Settings, icon: Cog6ToothIcon },
 ];
 
 export default function NavLinks() {

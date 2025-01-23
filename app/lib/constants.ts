@@ -8,4 +8,5 @@ export enum Pages {
   UpdateInvoice = '/dashboard/invoices/:id/edit',
   CreateCustomer = '/dashboard/customers/create',
   UpdateCustomer = '/dashboard/customers/:id/edit',
+  Settings = '/dashboard/settings',
 }
