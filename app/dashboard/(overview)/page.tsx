@@ -14,8 +14,6 @@ export const metadata: Metadata = {
   title: 'Dashboard',
 };
 
-export const experimental_ppr = true;
-
 export default async function Page() {
   return (
     <main>
